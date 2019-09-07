@@ -9,7 +9,7 @@ const siteContent = {
     "img-src": "img/logo.png"
   },
   "cta": {
-    "h1": "DOM Is Awesome",
+    "h1": "DOM<br> Is<br> Awesome",
     "button": "Get Started",
     "img-src": "img/header-img.png"
   },
@@ -28,7 +28,7 @@ const siteContent = {
   },
   "contact": {
     "contact-h4" : "Contact",
-    "address" : "123 Way 456 Street Somewhere, USA",
+    "address" : "123 Way 456 Street<br> Somewhere, USA",
     "phone" : "1 (888) 888-8888",
     "email" : "sales@greatidea.io",
   },
@@ -40,3 +40,77 @@ const siteContent = {
 // Example: Update the img src for the logo
 let logo = document.getElementById("logo-img");
 logo.setAttribute('src', siteContent["nav"]["img-src"])
+
+//navigation
+const nav = document.querySelector('header nav');
+const navLinks = document.querySelectorAll('a');
+
+//create and style new nav links
+const freqQuestions = document.createElement('a');
+freqQuestions.innerHTML= "FAQ";
+freqQuestions.style.color = "green";
+freqQuestions.setAttribute('href', '#');
+
+const investPg = document.createElement('a');
+investPg.innerHTML= "Investor"
+investPg.style.color = "green";
+investPg.setAttribute('href', '#')
+
+nav.append(freqQuestions);
+nav.prepend(investPg);
+
+//show and change main nav links
+for (let i = 0; i < navLinks.length; i++){
+  navLinks[i].innerHTML = siteContent['nav']['nav-item-' + (i+1)];
+  navLinks[i].style.color = "green";
+};
+
+//set up the cta img and text
+const ctaPic = document.getElementById('cta-img');
+let ctaText = document.querySelector('.cta-text h1');
+let ctaButton = document.querySelector('.cta-text button');
+
+ctaPic.setAttribute('src', siteContent['cta']['img-src']);
+ctaText.innerHTML = siteContent['cta']['h1'];
+ctaButton.innerText = siteContent['cta']['button'];
+
+ctaButton.addEventListener('click', (event) => {
+  event.target.style.backgroundColor = "purple";
+  setTimeout(function(){
+    event.target.style.backgroundColor="";
+  }, 400);
+}, false);
+
+//set top of middle content
+const topCH = document.querySelectorAll('.main-content h4');
+const topCT = document.querySelectorAll('.main-content p');
+
+topCH[0].innerHTML = siteContent['main-content']['features-h4'];
+topCH[1].innerHTML = siteContent['main-content']['about-h4'];
+topCT[0].innerHTML = siteContent['main-content']['features-content'];
+topCT[1].innerHTML = siteContent['main-content']['about-content'];
+
+let middleImg = document.getElementById('middle-img');
+middleImg.setAttribute('src', siteContent['main-content']['middle-img-src']);
+
+//set bottom of middle content
+const bottomCH = document.querySelectorAll('.bottom-content h4');
+const bottomCT = document.querySelectorAll('.bottom-content p');
+
+bottomCH[0].innerHTML = siteContent['main-content']['services-h4'];
+bottomCH[1].innerHTML = siteContent['main-content']['product-h4'];
+bottomCH[2].innerHTML = siteContent['main-content']['vision-h4'];
+bottomCT[0].innerHTML = siteContent['main-content']['services-content'];
+bottomCT[1].innerHTML = siteContent['main-content']['product-content'];
+bottomCT[2].innerHTML = siteContent['main-content']['vision-content'];
+
+//close out the page
+const contactH = document.querySelector('.contact h4');
+const contactInfo = document.querySelectorAll('.contact p');
+const foot = document.querySelector('footer');
+
+contactH.innerHTML = siteContent['contact']['contact-h4'];
+contactInfo[0].innerHTML = siteContent['contact']['address'];
+contactInfo[1].innerHTML = siteContent['contact']['phone'];
+contactInfo[2].innerHTML = siteContent['contact']['email'];
+foot.innerHTML = siteContent['footer']['copyright'];
